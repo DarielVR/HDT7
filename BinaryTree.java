@@ -96,9 +96,13 @@ public class BinaryTree<E>
 	public void InOrder (BinaryTree<E> parent) {
 		if (parent != null) {
 			InOrder(left);
-			System.out.println(val);
+			System.out.println(val.toString());
 			InOrder(right);
 		}
+	}
+
+	public void getValue () {
+		
 	}
 	
 }
