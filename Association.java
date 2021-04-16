@@ -1,8 +1,7 @@
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Map;
 
-public class Association <K, D extends Map> {
+public class Association <K extends Comparable<K>, D extends Map> {
 
     K Key;
     D Data;
@@ -28,5 +27,7 @@ public class Association <K, D extends Map> {
     public K getKey () {
         return Key;
     }
+
+    
     
 }

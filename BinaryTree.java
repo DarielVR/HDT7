@@ -1,15 +1,13 @@
 public class BinaryTree<E>
 {
-
     protected E val; // value associated with node
-	protected BinaryTree<E> parent; // parent of node
 	protected BinaryTree<E> left, right; // children of node
 	
 	public BinaryTree()
 	// post: constructor that generates an empty node
 	{
 		val = null;
-		parent = null; left = right = this;
+		left = right = this;
 	}
 	
 	public BinaryTree(E value)
@@ -43,20 +41,13 @@ public class BinaryTree<E>
 		return right;
 	}
 	
-	public BinaryTree<E> parent()
-	// post: returns reference to parent node, or null
-	{
-		return parent;
-	}
-	
 	public void setLeft(BinaryTree<E> newLeft)
 	// post: sets left subtree to newLeft
 	// re-parents newLeft if not null
 	{
-		if (isEmpty()) return;
-		if (left != null && left.parent() == this) left.setParent(null);
-		left = newLeft;
-		left.setParent(this);
+		if (left.isEmpty()){
+			
+		}
 	}
 
 	public void setRight(BinaryTree<E> newRight)
@@ -67,14 +58,6 @@ public class BinaryTree<E>
 		if (right != null && right.parent() == this) right.setParent(null);
 		right = newRight;
 		right.setParent(this);
-	}
-	
-	protected void setParent(BinaryTree<E> newParent)
-	// post: re-parents this node to parent reference, or null
-	{
-		if (!isEmpty()) {
-		parent = newParent;
-		}
 	}
 	
 	public boolean isEmpty() {
@@ -91,18 +74,6 @@ public class BinaryTree<E>
 	// post: sets the value associated with this node
 	{
 		val = value;
-	}
-
-	public void InOrder (BinaryTree<E> parent) {
-		if (parent != null) {
-			InOrder(left);
-			System.out.println(val.toString());
-			InOrder(right);
-		}
-	}
-
-	public void getValue () {
-		
 	}
 	
 }
