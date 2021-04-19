@@ -1,33 +1,31 @@
-import java.util.Arrays;
-import java.util.Map;
+public class Association <K extends Comparable<K>, D> implements Comparable<K> {
 
-public class Association <K extends Comparable<K>, D extends Map> {
+    private K key;
+    private D data;
 
-    K Key;
-    D Data;
-
-    public Association () {
-
+    public Association (K key, D data) {
+        this.key = key;
+        this.data = data;
     }
 
     public void put (K key, D data) {
-        this.Key = key;
-        this.Data = data;
+        this.key = key;
+        this.data = data;
     }
 
-    public String toString() {
-       return Arrays.toString(Data.values().toArray());
-
+    public D getData () {
+        return data;
     }
 
-    public Object valueFromSubKey (Object subKey) {
-        return Data.get(subKey);
-    }
 
     public K getKey () {
-        return Key;
+        return key;
     }
 
-    
+    @Override
+    public int compareTo(K key) {
+        // TODO Auto-generated method stub
+        return key.compareTo(key);
+    }
     
 }

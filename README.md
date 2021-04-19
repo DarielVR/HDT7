@@ -1,3 +1,3 @@
 # HDT7
  
-El archivo BinaryTree.java se obtuvo del material proporcionado en canvas y fue adaptado para la hoja de trabajo. 
+Para la clase BinaryTree se uso como referencia la implementacion de https://www.baeldung.com/java-binary-tree
