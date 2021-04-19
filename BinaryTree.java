@@ -1,79 +1,49 @@
-public class BinaryTree<E>
+public class BinaryTree<E extends Comparable<E>>
 {
-    protected E val; // value associated with node
-	protected BinaryTree<E> left, right; // children of node
-	
-	public BinaryTree()
-	// post: constructor that generates an empty node
-	{
-		val = null;
-		left = right = this;
+    Node<E> root;
+	int nodes = 0;
+
+	public BinaryTree() {
+		root = null;	
 	}
 	
-	public BinaryTree(E value)
-	// post: returns a tree referencing value and two empty subtrees
-	{
-		val = value;
-		right = left = new BinaryTree<E>();
-		setLeft(left);
-		setRight(right);
-	}
+	private Node<E> addRecursive(Node<E> current, E value) {
+		if (current == null) {
+			Node<E> node = new Node<>(value, nodes);
+			nodes++;
+			return node;
+		}
 	
-	public BinaryTree(E value, BinaryTree<E> left, BinaryTree<E> right)
-	// post: returns a tree referencing value and two subtrees
-	{
-		val = value;
-		if (left == null) { left = new BinaryTree<E>(); }
-		setLeft(left);
-		if (right == null) { right = new BinaryTree<E>(); }
-		setRight(right);
-	}
+		if (root.compareTo(value) < 0) {
+			current.left = addRecursive(current.left, value);
+		} else if (root.compareTo(value) > 0) {
+			current.right = addRecursive(current.right, value);
+		} else {
+			// value already exists
+			return current;
+		}
 	
-	public BinaryTree<E> left()
-	// post: returns reference to (possibly empty) left subtree
-	{
-		return left;
+		return current;
 	}
 
-	public BinaryTree<E> right()
-	// post: returns reference to (possibly empty) left subtree
-	{
-		return right;
+	public void add(E value) {
+		root = addRecursive(root, value);
 	}
 	
-	public void setLeft(BinaryTree<E> newLeft)
-	// post: sets left subtree to newLeft
-	// re-parents newLeft if not null
-	{
-		if (left.isEmpty()){
-			
+	public void traverseInOrder(Node<E> node) {
+		if (node != null) {
+			traverseInOrder(node.left);
+			System.out.print(" " + node.value);
+			traverseInOrder(node.right);
 		}
 	}
 
-	public void setRight(BinaryTree<E> newRight)
-	// post: sets left subtree to newLeft
-	// re-parents newLeft if not null
-	{
-		if (isEmpty()) return;
-		if (right != null && right.parent() == this) right.setParent(null);
-		right = newRight;
-		right.setParent(this);
+	public Node<E> getRoot() {
+		return root;
 	}
-	
-	public boolean isEmpty() {
-		return parent == null;
-	}
-	
-	public E value()
-	// post: returns value associated with this node
-	{
-		return val;
-	}
-	
-	public void setValue(E value)
-	// post: sets the value associated with this node
-	{
-		val = value;
+
+	public E getValue(Node<E> node) {
+		return node.value;
 	}
 	
 }
